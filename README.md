@@ -1,137 +1,141 @@
-# Iyan x m 🤖
+<p align="center">
+  <img src="assets/adawong-logo.webp" alt="readsw logo" width="180">
+</p>
 
-WhatsApp self-bot berbasis [Baileys](https://github.com/WhiskeySockets/Baileys) — downloader TikTok HD, pembuat stiker, auto-react status, galeri, dan banyak lagi.
+<h1 align="center">readsw</h1>
 
-👥 **Join grup WhatsApp kami:** [Klik untuk gabung](https://chat.whatsapp.com/BJRPy8iTnrRFbiEjwkZrUV)
+<p align="center">
+  <strong>WhatsApp Self-Bot — Status Automation, Media Downloader, and Multi-Clone Runner</strong>
+</p>
 
----
-
-## ✨ Fitur
-
-| Kategori | Command | Keterangan |
-|----------|---------|------------|
-| 📥 Downloader | `.tt` / `.tiktok` + link | Download video TikTok HD tanpa watermark |
-| | `.tt` (foto) | Slideshow TikTok jadi album foto |
-| | `.play <judul>` | Download audio YouTube (max 20 menit) |
-| | `.pin <keyword>` | Cari & download gambar Pinterest |
-| | `.bokep <keyword>` | Cari video (18+) |
-| 🎨 Stiker | kirim gambar + `.s` | Bikin stiker dari foto/video |
-| | `.tpack <link>` | Ambil sticker pack Telegram |
-| 👁️ Status | `.sw` | Panel pengaturan status |
-| | `.swread` / `.swreact` on/off | Auto-baca & auto-react status |
-| | `.swreacttext <tulisan>` | React status pakai tulisan custom |
-| | `.swreply` on/off | Balas status otomatis pakai teks |
-| | `.swemoji 😍🔥` | Ganti pool emoji react |
-| 🖼️ Galeri | `.cewe [n]` | Galeri gambar AI |
-| | `.cewevid` | Galeri video |
-| | `.chara <nama>` | Cari karakter |
-| 🎌 Anime 18+ | `.manhwa` / `.manhwa top` | Komik Korea sub Indo |
-| | `.hentai` / `.hd <keyword>` | Galeri Hentaidad |
-| | `.nekopoi <keyword>` | Cari di Nekopoi |
-| | `.hanime` | Video hanime |
-| 😂 Fun | `.khodam` / `.alay` / `.hacker` | Cek khodam, alay text, hacker prank |
-| ⚙️ Lainnya | `.menu` | Lihat semua command |
-| | `.setgc <link>` | Set link grup di menu |
+<p align="center">
+  Node.js &nbsp;|&nbsp; Baileys &nbsp;|&nbsp; Plugin Architecture &nbsp;|&nbsp; Owner-Only Access
+</p>
 
 ---
 
-## 📋 Syarat
+## Overview
 
-- **Node.js** versi 20 atau lebih baru
-- **ffmpeg** (untuk stiker & konversi media)
-- Nomor WhatsApp aktif (untuk pairing)
+**readsw** is a personal WhatsApp self-bot built with Node.js and the Baileys library.
+It runs as a single-owner assistant focused on three areas: full automation of WhatsApp
+Status (stories), high-quality media downloading, and a multi-clone runner that lets
+several additional numbers operate from the same codebase.
 
----
+The bot uses a modular plugin system — every feature is an independent plugin file that
+is loaded automatically at startup. The current build ships **69 plugins and 156 commands**.
 
-## 🚀 Cara Install
+## Key Features
 
-### 1. Clone & install
+### Status (Story) Automation
+- Auto-read incoming statuses with read receipts.
+- Auto-react with a configurable text sequence, a custom text per contact, or a random emoji pool.
+- **Group Status support** — statuses posted to WhatsApp groups are detected and processed with the same auto-read and auto-react pipeline, while regular group chats remain untouched.
+- Status saver — incoming status media is archived locally.
+- Status auto-reply with a configurable message.
+- Daily status summary delivered to Telegram at 23:59 WIB.
+
+### Privacy and Safety Nets
+- Anti-delete — deleted messages and statuses are forwarded to Telegram with sender, number, timestamp, and content.
+- Anti view-once — view-once photos and videos are forwarded to Telegram so they can be opened again.
+- Anti-group mode — the bot stays completely silent in group chats (commands and auto features do not respond there).
+- Strict prefix policy — commands only work with the `.` prefix; plain words are treated as regular messages.
+
+### Media Downloaders
+- **TikTok HD 1080p** — downloads at true 1080p quality via `.tiktokhd`, and automatically when a TikTok link is sent in chat without any command.
+- TikTok slideshow posts are delivered as a single album.
+- YouTube audio/video downloader with an interactive choice (reply `1` for MP3, `2` for MP4).
+- Sticker maker, Pinterest and Pixiv image search, and more.
+
+### Multi-Clone (Jadibot)
+- Additional WhatsApp numbers can be paired as clones with a pairing code (`.jadibot <number>`).
+- All clones run in a separate runner process from the same codebase and plugin set; a code update applies to every clone after a runner restart.
+- Stale session locks are detected and recovered automatically.
+
+### Assistant Features
+- Owner-only AI chat mode with fast, no-delay replies (`.adawong`).
+- Scheduled status posting from a TikTok link queue.
+- Animated loading panel and an organized status control panel (`.sw`).
+
+## Tech Stack
+
+| Component | Technology |
+| --- | --- |
+| Runtime | Node.js (ES Modules) |
+| WhatsApp API | Baileys |
+| Architecture | Plugin system with automatic loader |
+| Storage | JSON file database (atomic writes, corruption-safe) |
+| Process | Supervisor script with auto-restart and connection watchdog |
+| Integrations | Telegram Bot API (forwards and daily summary) |
+
+## Project Structure
+
+```
+readsw/
+├── run.sh                  # Supervisor (auto-restart)
+├── clone-run.sh            # Clone runner supervisor
+├── src/
+│   ├── index.js            # Main bot bootstrap
+│   ├── clone-runner.js     # Multi-clone runner
+│   ├── handler/            # Message and event handlers
+│   ├── helper/             # Shared helpers (status, downloader, session, loading)
+│   ├── plugins/            # Feature plugins (auto-loaded)
+│   └── db/                 # JSON database layer
+└── assets/                 # Menu banner and logo
+```
+
+## Installation
 
 ```bash
-git clone https://github.com/iyannsysu/iyan-x-m.git
-cd iyan-x-m
+git clone https://github.com/iyannsysu/bot-auto-read.git
+cd bot-auto-read
 npm install
-```
-
-### 2. Setting config
-
-```bash
-cp .env.example .env
-```
-
-Buka file `.env` lalu isi yang penting:
-
-```env
-# Nomor WhatsApp untuk pairing (format: 6281234567890)
-BOT_NUMBER_PAIR=6281234567890
-
-# Nomor owner (bisa lebih dari 1, pisahkan koma)
-BOT_NUMBER_OWNER=6281234567890
-
-# Nama owner (tampil di menu)
-BOT_OWNER_NAME=Iyan
-```
-
-> 💡 Pengaturan lain (auto-download, status saver, dsb) bisa dibiarkan default dulu.
-
-### 3. Jalankan bot
-
-```bash
-npm start
-```
-
-Atau pakai supervisor (auto-restart kalau crash):
-
-```bash
+cp .env.example .env   # fill in your configuration
 bash run.sh
 ```
 
-### 4. Pairing WhatsApp
+On first run the bot prints a pairing code. Open WhatsApp on your phone,
+go to **Linked Devices**, and enter the code to connect.
 
-- Kalau `BOT_NUMBER_PAIR` diisi → kode pairing muncul di terminal, masukkan di **WhatsApp > Perangkat Tertaut > Tautkan Perangkat > Tautkan dengan nomor telepon**
-- Kalau dikosongkan → scan QR yang muncul di terminal
+## Configuration
 
-Tunggu sampai muncul **"Connected successfully"** ✅
+Main settings are provided through `.env`:
 
----
+| Variable | Description |
+| --- | --- |
+| `BOT_NUMBER_OWNER` | Owner number(s), comma separated |
+| `BOT_PREFIX` | Command prefix (default `.`) |
+| `BOT_ALLOWED_NO_PREFIX` | Allow commands without prefix (default `false`) |
+| `TELEGRAM_TOKEN` | Telegram bot token for forwarding (optional) |
+| `TELEGRAM_CHAT_ID` | Telegram chat target for forwarding (optional) |
 
-## ⚙️ Konfigurasi Lanjutan
+Runtime toggles for status features (auto-read, auto-react, auto-reply, random emoji
+mode, react text) are managed live from chat through the `.sw` panel and are stored in
+`swconfig.json` — changes apply without a restart.
 
-| File | Fungsi |
-|------|--------|
-| `.env` | Konfigurasi utama (jangan dibagikan!) |
-| `swconfig.json` | Pengaturan status (auto-read/react/reply) — bisa diubah via command `.sw` |
-| `react.json` | Custom emoji react per kontak |
-| `autoreply.json` | Auto-reply keyword di chat pribadi |
-| `watch.json` | Pantau kontak penting → teruskan ke Telegram |
+## Usage Examples
 
-Semua file config di atas **otomatis dibuat** saat bot pertama jalan, dan bisa diubah tanpa restart.
+| Command | Description |
+| --- | --- |
+| `.menu` | Show the command menu |
+| `.sw` | Status control panel (auto-read, auto-react, auto-reply) |
+| `.tiktokhd <link>` | Download a TikTok video in HD 1080p |
+| `.tt <link>` | Download a TikTok video or slideshow |
+| `.play <title>` | Search YouTube, then reply `1` (MP3) or `2` (MP4) |
+| `.jadibot <number>` | Pair a new clone number |
+| `.status` | Show main bot and clone status |
+| `.adawong on` | Enable AI chat mode in the current chat |
 
----
+Sending a TikTok link without any command also works: the bot detects the link
+and replies with the HD video automatically.
 
-## 📝 Catatan
+## Notes
 
-- Session WhatsApp tersimpan di folder `sessions/` — **jangan dibagikan ke siapa pun**
-- File `.env` berisi data pribadi — sudah masuk `.gitignore`, jangan di-push
-- Bot ini self-bot: gunakan nomor kedua/baru, bukan nomor utama
-- Gunakan dengan bijak dan patuhi [Ketentuan WhatsApp](https://www.whatsapp.com/legal/terms-of-service)
+- This is a self-bot for personal use on your own account. WhatsApp does not
+  officially support unofficial automation; use it responsibly and at your own risk.
+- Sessions, `.env`, downloads, and logs are intentionally not included in this repository.
 
----
+## Author
 
-## 💬 Butuh Bantuan?
+Created and maintained by **Iyan** — [github.com/iyannsysu](https://github.com/iyannsysu)
 
-Join grup WhatsApp kami untuk tanya-tanya & update terbaru:
-
-👉 [Gabung Grup WhatsApp](https://chat.whatsapp.com/BJRPy8iTnrRFbiEjwkZrUV)
-
----
-
-## 📞 Kontak Owner
-
-Ada kendala atau mau request fitur? Hubungi langsung:
-
-👉 [Chat WhatsApp Iyan](https://wa.me/6282161429908)
-
----
-
-Made with ❤️ by Iyan
+Copyright (c) 2026 Iyan. Personal project — please do not sell or redistribute commercially without permission.
