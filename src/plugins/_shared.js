@@ -17,8 +17,6 @@ import { downloadTikTok, cleanupTikTok } from '../helper/tiktok.js';
 import { downloadYouTubeAudio, downloadYouTubeAudioById, downloadYouTubeVideo, searchYouTube, cleanupYouTubeAudio } from '../helper/youtube.js';
 import { searchPinterest, downloadPinterestPin, cleanupPinterest } from '../helper/pinterest.js';
 import { searchPixiv, downloadPixivArtwork, cleanupPixiv } from '../helper/pixiv.js';
-import { searchHentaidad, downloadHentaidadGallery, cleanupHentaidad } from '../helper/hentaidad.js';
-import { searchHanime, getHanimeStreams, pickHanimeStream, downloadHanimeStream, shortNum } from '../helper/hanime.js';
 import { getStickerPack, downloadStickerPack, cleanupStickerPack } from '../helper/stickerpack.js';
 import { getTelegramPack, downloadTelegramPack, cleanupTelegramPack } from '../helper/tgsticker.js';
 import { readSwConfig, writeSwConfig, extractEmojis } from '../helper/swconfig.js';
@@ -28,10 +26,6 @@ import { telegram } from '../helper/index.js';
 
 const execFileAsync = util.promisify(execFile);
 
-/** Cache hasil pencarian .hanime per pengirim: sender -> Array hasil searchHanime */
-const hanimeSearchCache = new Map();
-const bokepSearchCache = new Map();
-const cosplay18SearchCache = new Map();
 const manhwaSearchCache = new Map(); // sender -> hasil search
 const manhwaChapterCache = new Map(); // sender -> { manga, chapters }
 
@@ -244,8 +238,6 @@ export {
 	downloadYouTubeAudio, downloadYouTubeAudioById, downloadYouTubeVideo, searchYouTube, cleanupYouTubeAudio,
 	searchPinterest, downloadPinterestPin, cleanupPinterest,
 	searchPixiv, downloadPixivArtwork, cleanupPixiv,
-	searchHentaidad, downloadHentaidadGallery, cleanupHentaidad,
-	searchHanime, getHanimeStreams, pickHanimeStream, downloadHanimeStream, shortNum,
 	getStickerPack, downloadStickerPack, cleanupStickerPack,
 	getTelegramPack, downloadTelegramPack, cleanupTelegramPack,
 	readSwConfig, writeSwConfig, extractEmojis,
@@ -254,7 +246,6 @@ export {
 	telegram,
 	execFileAsync,
 	PROJECT_ROOT, MENU_BANNER, GC_JSON,
-	hanimeSearchCache, bokepSearchCache, cosplay18SearchCache,
 	manhwaSearchCache, manhwaChapterCache,
 	readGcLink, handleTikTokDownload, sendAlbum, handleSticker,
 };

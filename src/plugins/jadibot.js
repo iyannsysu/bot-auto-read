@@ -14,8 +14,6 @@ import * as shared from './_shared.js';
 		downloadYouTubeAudio, cleanupYouTubeAudio,
 		searchPinterest, downloadPinterestPin, cleanupPinterest,
 		searchPixiv, downloadPixivArtwork, cleanupPixiv,
-		searchHentaidad, downloadHentaidadGallery, cleanupHentaidad,
-		searchHanime, getHanimeStreams, pickHanimeStream, downloadHanimeStream, shortNum,
 		getStickerPack, downloadStickerPack, cleanupStickerPack,
 		getTelegramPack, downloadTelegramPack, cleanupTelegramPack,
 		readSwConfig, writeSwConfig, extractEmojis,
@@ -23,7 +21,6 @@ import * as shared from './_shared.js';
 		handleBusyReply, loadBusyCfg, saveBusyCfg,
 		telegram, execFileAsync,
 		PROJECT_ROOT, MENU_BANNER, GC_JSON,
-		hanimeSearchCache, bokepSearchCache, cosplay18SearchCache,
 		manhwaSearchCache, manhwaChapterCache,
 		readGcLink, handleTikTokDownload, sendAlbum, handleSticker,
 	} = shared;

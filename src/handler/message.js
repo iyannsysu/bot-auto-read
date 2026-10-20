@@ -15,8 +15,6 @@ import { downloadTikTok, cleanupTikTok } from '../helper/tiktok.js';
 import { downloadYouTubeAudio, cleanupYouTubeAudio } from '../helper/youtube.js';
 import { searchPinterest, downloadPinterestPin, cleanupPinterest } from '../helper/pinterest.js';
 import { searchPixiv, downloadPixivArtwork, cleanupPixiv } from '../helper/pixiv.js';
-import { searchHentaidad, downloadHentaidadGallery, cleanupHentaidad } from '../helper/hentaidad.js';
-import { searchHanime, getHanimeStreams, pickHanimeStream, downloadHanimeStream, shortNum } from '../helper/hanime.js';
 import { getStickerPack, downloadStickerPack, cleanupStickerPack } from '../helper/stickerpack.js';
 import { getTelegramPack, downloadTelegramPack, cleanupTelegramPack } from '../helper/tgsticker.js';
 import { readSwConfig, writeSwConfig, extractEmojis } from '../helper/swconfig.js';
@@ -36,10 +34,6 @@ const cooldowns = new Map();
 
 const execFileAsync = util.promisify(execFile);
 
-/** Cache hasil pencarian .hanime per pengirim: sender -> Array hasil searchHanime */
-const hanimeSearchCache = new Map();
-const bokepSearchCache = new Map();
-const cosplay18SearchCache = new Map();
 const manhwaSearchCache = new Map(); // sender -> hasil search
 const manhwaChapterCache = new Map(); // sender -> { manga, chapters }
 

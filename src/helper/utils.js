@@ -8,7 +8,7 @@ import { PYTHON } from './paths.js';
 const HELPER_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 /**
- * Menjalankan skrip Python (brat.py, nulis.py, hv-dl.py) dengan aman dan timeout.
+ * Menjalankan skrip Python (brat.py, nulis.py) dengan aman dan timeout.
  * Adaptasi ESM dari snippet user: pakai PYTHON terpusat dari paths.js,
  * path helper via import.meta.url (karena __dirname tidak ada di ESM).
  */

@@ -1,7 +1,7 @@
 'use strict';
 // Helper: gabung gambar-gambar komik jadi SATU file PDF.
 // Dipakai .komik dan .manhwa biar nggak spam puluhan pesan gambar.
-// (.bokep sengaja TIDAK pakai ini — video tetap dikirim biasa.)
+
 
 import PDFDocument from 'pdfkit';
 import { execFile } from 'child_process';
