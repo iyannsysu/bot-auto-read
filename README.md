@@ -138,4 +138,8 @@ and replies with the HD video automatically.
 
 Created and maintained by **Iyan** — [github.com/iyannsysu](https://github.com/iyannsysu)
 
-Copyright (c) 2026 Iyan. Personal project — please do not sell or redistribute commercially without permission.
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+Copyright (c) 2025 Iyan
