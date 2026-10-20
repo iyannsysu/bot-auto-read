@@ -12,6 +12,10 @@
   Node.js &nbsp;|&nbsp; Baileys &nbsp;|&nbsp; Plugin Architecture &nbsp;|&nbsp; Owner-Only Access
 </p>
 
+<p align="center">
+  <strong>English (US)</strong> &nbsp;|&nbsp; <a href="README.id.md">Bahasa Indonesia</a> &nbsp;|&nbsp; <a href="README.ja.md">日本語</a> &nbsp;|&nbsp; <a href="README.zh.md">中文</a> &nbsp;|&nbsp; <a href="README.ru.md">Русский</a>
+</p>
+
 ---
 
 ## Overview
